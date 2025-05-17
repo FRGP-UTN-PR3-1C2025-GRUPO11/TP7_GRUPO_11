@@ -14,17 +14,13 @@ namespace TP7_GRUPO_11
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
-                //GestionBDSucursales gestion = new GestionBDSucursales();
-                //DataTable dt = new DataTable();
-                //dt = gestion.mostrarSucursales();
-                //lv_Sucursales.DataSource = dt;
-                //lv_Sucursales.DataBind();
+
             }
         }
 
-        Conexion conexion = new Conexion();
 
         protected void btn_Seleccionar_Command(object sender, CommandEventArgs e)
         {
@@ -32,6 +28,7 @@ namespace TP7_GRUPO_11
             {
                
                 lblRespuesta.Text = e.CommandArgument.ToString();
+                Session["SeleccionSucursal"] = e.CommandArgument.ToString();
 
             }
             
@@ -52,6 +49,20 @@ namespace TP7_GRUPO_11
             }
             lv_Sucursales.DataBind();
             txt_buscarSucursal.Text = String.Empty;
+        }
+
+
+
+        protected void btnProvincia_Command(object sender, CommandEventArgs e)
+        {
+            if(e.CommandName == "eventoProvincia")
+            {
+                lblRespuesta.Text = e.CommandArgument.ToString();
+                Session["SeleccionProvincia"] = e.CommandArgument.ToString();
+                SqlDataSource1.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [URL_Imagen_Sucursal], [DescripcionProvincia] FROM [Sucursal] INNER JOIN [Provincia] ON [Sucursal].[Id_ProvinciaSucursal] = [Provincia].[Id_Provincia] WHERE [Id_Provincia] = " + e.CommandArgument.ToString();
+                SqlDataSource1.SelectParameters.Clear();
+                lv_Sucursales.DataBind();
+            }
         }
     }
 }

@@ -18,10 +18,10 @@
             padding: 3px;
             grid-template-columns: 200px 400px 400px;
             grid-template-areas: 
-                ". header header"
-                ". main main"
+                "espacio header header"
                 "nav main main"
-                ". footer footer";
+                "nav main main"
+                "nav footer footer";
             width: 1000px;
             max-width: 100%;
             margin-left: auto;
@@ -31,27 +31,27 @@
 
         form {
             display: contents;
-
         }
         nav {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 30px;
             grid-area: nav;
+            grid-column: 1; /* columna 1 */
+            grid-row: 3 / span 2; /* filas 3 y 4 */
             width: 200px;
-            min-height: 800px;
-
+            height: 705px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 140px;
         }
 
         nav input[type=submit] {
             padding: 10px;
+            margin-bottom: 30px;
             width: 170px;
             height: 40px;
             background-color: white;
             border: 1px solid #000;
             cursor: pointer;
-
         }
 
         nav input[type=submit]:hover {
@@ -59,7 +59,6 @@
         }
         .listview {
             display: flex;
-            
             grid-area: main;
             flex-direction: column;
 
@@ -81,7 +80,6 @@
              gap: 50px;
              justify-content: center;
              gap: 80px;
-             
              grid-area: header;
          }
          header a {
@@ -103,12 +101,11 @@
          }
 
         header a:hover {
-/*            border: 1px solid crimson;*/
+            border: 1px solid crimson;
             color: crimson;
         }
 
          #form-header {
-            
 
          }
          h1 {
@@ -151,28 +148,41 @@
         #lv_Sucursales_DataPager1 > input[type=submit] {
             cursor: pointer;
         }
+        #espacio
+        {
+/*            grid-area: espacio;
+            background-color: crimson;
+            width: 200px;
+            height: 200px;*/
+        }
     </style>
 </head>
 <body>
+    <div id="espacio"></div>
     <header>
         <a href="#">Listado de Sucursales</a>
         <a href="#">Mostrar Sucursales Seleccionadas</a>
     </header>
     <form id="form1" runat="server">
         <nav>
-            <asp:Button ID="buenosaires" runat="server" Text="Buenos Aires" />
-            <asp:Button ID="entrerios" runat="server" Text="Entre Ríos" />
-            <asp:Button ID="santafe" runat="server" Text="Santa Fe" />
-            <asp:Button ID="lapampa" runat="server" Text="La Pampa" />
-            <asp:Button ID="cordoba" runat="server" Text="Córdoba" />
-            <asp:Button ID="misiones" runat="server" Text="Misiones" />
-            <asp:Button ID="chaco" runat="server" Text="Chaco" />
+            <asp:DataList ID="dl_Provincias" runat="server" DataSourceID="SqlDataSource2">
+                <ItemTemplate>
+
+                    <asp:Button ID="btnProvincia" runat="server" Text='<%# Eval("DescripcionProvincia") %>' value='<%# Eval("Id_Provincia") %>' CommandArgument='<%# Eval("Id_Provincia") %>' CommandName="eventoProvincia" OnCommand="btnProvincia_Command" />
+                    
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString2 %>" ProviderName="<%$ ConnectionStrings:BDSucursalesConnectionString2.ProviderName %>" SelectCommand="SELECT [Id_Provincia],[DescripcionProvincia] FROM [Provincia]"></asp:SqlDataSource>
         </nav>
         <div class="listview">
             <div id="form-header">
                 <h1>Listado de Sucursales</h1>
                 <div id="buscarSucursal">
-                    <label id="lbl_buscarSucursal" for="txt_buscarSucursal">Búsqueda por nombre de sucursal: </label><asp:TextBox ID="txt_buscarSucursal" runat="server"></asp:TextBox>
+                    <label id="lbl_buscarSucursal" for="txt_buscarSucursal">Búsqueda por nombre de sucursal: </label>
+                    <div style="display: inline-block">
+                         <asp:TextBox ID="txt_buscarSucursal" runat="server"></asp:TextBox><br /><asp:RegularExpressionValidator ID="rev_buscarSucursal" runat="server" ErrorMessage="Debe ser un número" ControlToValidate="txt_buscarSucursal" Display="Dynamic" ValidationExpression="^[0-9]*$" Font-Bold="True" ForeColor="Red"></asp:RegularExpressionValidator>
+
+                    </div>
                         <asp:Button ID="btn_buscarSucursal" runat="server" Text="Buscar" OnClick="btn_buscarSucursal_Click" />
                 </div>
             </div>
@@ -219,14 +229,14 @@
                         <br /></td>
                 </InsertItemTemplate>
                 <ItemTemplate>
-                    <td runat="server" style="height: 305px; width: 300px">
+                    <td runat="server" style="height: 335px; width: 300px">
                         <div class="plantillaItem">
-                            <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>'   style="display: block" />
+                            <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>'   style="display: block; padding: 4px" />
                             <div style="display: block; background-color: #ffffff">
                                 <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' />
                             </div>
-                            <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' style="display: block; padding-left: 3px; padding-right: 3px;"   />
-                            <div style="display: block; margin-top: auto;">
+                            <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' style="display: block; padding: 4px;"   />
+                            <div style="display: block; margin-top: auto; padding: 4px">
                                 <asp:Button ID="btn_Seleccionar" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("Id_Sucursal") + " - " + Eval("NombreSucursal") + " - " + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btn_Seleccionar_Command" style="cursor: pointer;" />
                             </div>
                         </div>
