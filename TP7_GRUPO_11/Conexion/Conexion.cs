@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Data;
 
-namespace TP7_GRUPO_11.Conexion
+namespace TP7_GRUPO_11
 {
-    public class accesoDatos
+    public class Conexion
     {
-        string rutaBDSucursales = "Data Source=MABELO360\\SQLEXPRESS;Initial Catalog=BDSucursales;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+        string rutaBDSucursales = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=BDSucursales;Integrated Security=True";
        
-        public accesoDatos ()
+        public Conexion()
         {}
         
         public SqlConnection obtenerConexion()
@@ -27,17 +28,26 @@ namespace TP7_GRUPO_11.Conexion
             }
         }
 
-        public SqlDataAdapter obtenerSqlDataAdapter(string consultaSQL)
+
+        public DataTable obtenerSucursal(string consultaSQL)
         {
+            DataTable tabla = new DataTable();
+
             try
             {
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consultaSQL, obtenerConexion() );
-                return sqlDataAdapter;
+                using (SqlConnection conexion = obtenerConexion())
+                {
+                    conexion.Open();
+                    SqlDataAdapter adaptador = new SqlDataAdapter(consultaSQL, conexion);
+                    adaptador.Fill(tabla);
+                } // Aquí se cierra la conexión automáticamente
             }
             catch (Exception ex)
             {
-                return null;
+                // Log o manejo de error
             }
+
+            return tabla;
         }
 
         public int ejecutarProcedimientosAlmacenados(SqlCommand comandoSQL, string nombreProcedimientoAlmacenado)
