@@ -61,6 +61,9 @@
                         <asp:ImageButton ID="ibSur" runat="server" Height="100px" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' style="margin-left: 91px" Width="204px" />
                         <br />
                         <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
+                            <br />
+                            <br />
+                            <asp:Button ID="btnSeleccion" runat="server" Text="Seleccionar" Width="90px" />
                         <br /></td>
                 </ItemTemplate>
                 <LayoutTemplate>
