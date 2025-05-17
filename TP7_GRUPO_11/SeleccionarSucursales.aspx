@@ -63,7 +63,7 @@
                         <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
                             <br />
                             <br />
-                            <asp:Button ID="btnSeleccion" runat="server" Text="Seleccionar" Width="90px" />
+                            <asp:Button ID="btnSeleccion" runat="server" Text="Seleccionar" Width="90px" CommandArgument='<%# Eval("nombreSucursal") + ";" + Eval("DescripcionSucursal") + ";" +  Eval("Id_Sucursal") %>' CommandName="eventoSeleccionar" OnClick="btnSeleccion_Click" OnCommand="btnSeleccion_Command" />
                         <br /></td>
                 </ItemTemplate>
                 <LayoutTemplate>
@@ -100,8 +100,10 @@
                         <br /></td>
                 </SelectedItemTemplate>
             </asp:ListView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [URL_Imagen_Sucursal], [NombreSucursal], [DescripcionSucursal] FROM [Sucursal]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [URL_Imagen_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_Sucursal] FROM [Sucursal]"></asp:SqlDataSource>
         </div>
+        <asp:GridView ID="gvPrueba" runat="server">
+        </asp:GridView>
     </form>
 </body>
 </html>
