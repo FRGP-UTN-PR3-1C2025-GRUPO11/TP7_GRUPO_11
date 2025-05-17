@@ -16,11 +16,11 @@ namespace TP7_GRUPO_11
         {
             if (!IsPostBack)
             {
-                GestionBDSucursales gestion = new GestionBDSucursales();
-                DataTable dt = new DataTable();
-                dt = gestion.mostrarSucursales();
-                lv_Sucursales.DataSource = dt;
-                lv_Sucursales.DataBind();
+                //GestionBDSucursales gestion = new GestionBDSucursales();
+                //DataTable dt = new DataTable();
+                //dt = gestion.mostrarSucursales();
+                //lv_Sucursales.DataSource = dt;
+                //lv_Sucursales.DataBind();
             }
         }
 
@@ -39,12 +39,19 @@ namespace TP7_GRUPO_11
 
         protected void btn_buscarSucursal_Click(object sender, EventArgs e)
         {
-            GestionBDSucursales gestion = new GestionBDSucursales();
-            DataTable dt = new DataTable();
-            dt = gestion.obtenerSucursal(txt_buscarSucursal.Text);
-            lv_Sucursales.DataSource = dt;
+            if(string.IsNullOrEmpty(txt_buscarSucursal.Text))
+            {
+                SqlDataSource1.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [URL_Imagen_Sucursal] FROM [Sucursal]";
+                SqlDataSource1.SelectParameters.Clear();
+            }
+            else
+            {
+                SqlDataSource1.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [URL_Imagen_Sucursal] FROM [Sucursal] WHERE [Id_Sucursal] = @IdSucursal";
+                SqlDataSource1.SelectParameters.Clear();
+                SqlDataSource1.SelectParameters.Add("IdSucursal", txt_buscarSucursal.Text.Trim());
+            }
             lv_Sucursales.DataBind();
-            txt_buscarSucursal.Text = string.Empty;
+            txt_buscarSucursal.Text = String.Empty;
         }
     }
 }

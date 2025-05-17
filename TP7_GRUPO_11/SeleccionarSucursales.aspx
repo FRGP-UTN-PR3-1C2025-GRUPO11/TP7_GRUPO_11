@@ -176,7 +176,7 @@
                         <asp:Button ID="btn_buscarSucursal" runat="server" Text="Buscar" OnClick="btn_buscarSucursal_Click" />
                 </div>
             </div>
-            <asp:ListView ID="lv_Sucursales" runat="server" GroupItemCount="3">
+            <asp:ListView ID="lv_Sucursales" runat="server" GroupItemCount="3" DataSourceID="SqlDataSource1">
                 <EditItemTemplate>
                     <td runat="server" style="background-color: #999999;">NombreSucursal:
                         <asp:TextBox ID="NombreSucursalTextBox" runat="server" Text='<%# Bind("NombreSucursal") %>' />
