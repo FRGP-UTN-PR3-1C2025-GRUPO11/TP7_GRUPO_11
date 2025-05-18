@@ -10,6 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="Label1" runat="server" Text="Busqueda por nombre de Sucursal:"></asp:Label>
+            <asp:TextBox ID="txtBoxBuscarSucursal" runat="server"></asp:TextBox>
+            <asp:Button ID="btnBuscarSucursal" runat="server" OnClick="btnBuscarSucursal_Click" Text="Buscar" />
             <asp:ListView ID="lv_Sucursales" runat="server" DataSourceID="SqlDataSource1" GroupItemCount="3">
                 <EditItemTemplate>
                     <td runat="server" style="background-color: #FFCC66;color: #000080;">URL_Imagen_Sucursal:

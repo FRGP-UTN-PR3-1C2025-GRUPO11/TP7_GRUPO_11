@@ -83,5 +83,23 @@ namespace TP7_GRUPO_11
 
 
         }
+
+        protected void btnBuscarSucursal_Click(object sender, EventArgs e)
+        {
+            string filtro = txtBoxBuscarSucursal.Text.Trim();
+
+            if (!string.IsNullOrEmpty(filtro))
+            {
+                SqlDataSource1.SelectCommand = "SELECT [URL_Imagen_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_Sucursal] FROM [Sucursal] WHERE NombreSucursal LIKE '%' + @nombre + '%'";
+                SqlDataSource1.SelectParameters.Clear();
+                SqlDataSource1.SelectParameters.Add("nombre", filtro);
+            }
+            else
+            {
+                SqlDataSource1.SelectCommand = "SELECT [URL_Imagen_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_Sucursal] FROM [Sucursal]";
+            }
+
+            lv_Sucursales.DataBind();
+        }
     }
 }
