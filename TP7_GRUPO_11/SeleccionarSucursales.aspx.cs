@@ -12,23 +12,47 @@ namespace TP7_GRUPO_11
 {
     public partial class SeleccionarSucursales : System.Web.UI.Page
     {
+         
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+ 
             if (!IsPostBack)
             {
-
+;
             }
         }
 
 
         protected void btn_Seleccionar_Command(object sender, CommandEventArgs e)
         {
-            if(e.CommandName == "eventoSeleccionar")
+            if (e.CommandName == "eventoSeleccionar")
             {
-               
-                lblRespuesta.Text = e.CommandArgument.ToString();
-                Session["SeleccionSucursal"] = e.CommandArgument.ToString();
+                DataTable dt;
+
+                if (Session["SeleccionSucursal"] == null )
+                {
+                    dt = new DataTable();
+                    dt.Columns.Add("Id_Sucursal");
+                    dt.Columns.Add("NombreSucursal");
+                    dt.Columns.Add("DescripcionSucursal");
+                }
+
+                else
+                {
+                    dt = (DataTable)Session["SeleccionSucursal"];
+                }
+
+                string[] argumentos = e.CommandArgument.ToString().Split(',');
+
+                DataRow dr = dt.NewRow();
+                dr["Id_Sucursal"] = argumentos[0];
+                dr["NombreSucursal"] = argumentos[1];
+                dr["DescripcionSucursal"] = argumentos[2];
+                dt.Rows.Add(dr); 
+
+                Session["SeleccionSucursal"] = dt;
+                lblRespuesta2.Text += argumentos[0] + " - " + argumentos[1] + " - " + argumentos[2] + "<br>";
 
             }
             

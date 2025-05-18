@@ -160,8 +160,8 @@
 <body>
     <div id="espacio"></div>
     <header>
-        <a href="#">Listado de Sucursales</a>
-        <a href="#">Mostrar Sucursales Seleccionadas</a>
+        <a href="./SeleccionarSucursales.aspx">Listado de Sucursales</a>
+        <a href="./ListadoSucursalesSeleccionados.aspx">Mostrar Sucursales Seleccionadas</a>
     </header>
     <form id="form1" runat="server">
         <nav>
@@ -237,7 +237,7 @@
                             </div>
                             <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' style="display: block; padding: 4px;"   />
                             <div style="display: block; margin-top: auto; padding: 4px">
-                                <asp:Button ID="btn_Seleccionar" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("Id_Sucursal") + " - " + Eval("NombreSucursal") + " - " + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btn_Seleccionar_Command" style="cursor: pointer;" />
+                                <asp:Button ID="btn_Seleccionar" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("Id_Sucursal") + "," +  Eval("NombreSucursal") + "," + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btn_Seleccionar_Command" style="cursor: pointer;" />
                             </div>
                         </div>
                     </td>
@@ -279,7 +279,8 @@
         </div>
     </form>
     <footer>
-        <asp:Label ID="lblRespuesta" runat="server" Text="aca esta el label respuesta"></asp:Label>
+        <asp:Label ID="lblRespuesta" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblRespuesta2" runat="server" Text=""></asp:Label>
 
     </footer>
 </body>
