@@ -14,14 +14,24 @@ namespace TP7_GRUPO_11
         {
             if (Session["SeleccionSucursal"] != null)
             {
+                btn_BorrarListadoSucursales.Visible = true;
                 DataTable dt = (DataTable)Session["SeleccionSucursal"];
                 gv_ListadoSucursalesSeleccionadas.DataSource = dt;
                 gv_ListadoSucursalesSeleccionadas.DataBind();
             }
             else
             {
-                lbl_SinDatos.Text = "No hay datos para mostrar";
+                btn_BorrarListadoSucursales.Visible = false;
+                lbl_Mensajes.Text = "No hay datos para mostrar";
             }
+        }
+
+        protected void btn_BorrarListadoSucursales_Click(object sender, EventArgs e)
+        {
+            btn_BorrarListadoSucursales.Visible = false;
+            gv_ListadoSucursalesSeleccionadas.Visible = false;
+            Session["SeleccionSucursal"] = null;
+            lbl_Mensajes.Text = "Selección eliminada";
         }
     }
 }

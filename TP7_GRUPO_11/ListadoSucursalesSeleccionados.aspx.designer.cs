@@ -33,21 +33,30 @@ namespace TP7_GRUPO_11
         protected global::System.Web.UI.WebControls.GridView gv_ListadoSucursalesSeleccionadas;
 
         /// <summary>
-        /// Control lbl_SinDatos.
+        /// Control lbl_Mensajes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_SinDatos;
+        protected global::System.Web.UI.WebControls.Label lbl_Mensajes;
 
         /// <summary>
-        /// Control lblRespuesta.
+        /// Control btn_BorrarListadoSucursales.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRespuesta;
+        protected global::System.Web.UI.WebControls.Button btn_BorrarListadoSucursales;
+
+        /// <summary>
+        /// Control btn_Volver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Volver;
     }
 }

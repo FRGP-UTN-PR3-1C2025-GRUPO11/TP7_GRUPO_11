@@ -11,76 +11,14 @@
             box-sizing: border-box;
             font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        body {
-            margin: 0 auto;
-            display: grid;
-            margin: 0px;
-            padding: 3px;
-            grid-template-columns: 200px 400px 400px;
-            grid-template-areas: 
-                "espacio header header"
-                "nav main main"
-                "nav main main"
-                "nav footer footer";
-            width: 1000px;
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
         
-
-        form {
-            display: contents;
-        }
-        nav {
-            grid-area: nav;
-            grid-column: 1; /* columna 1 */
-            grid-row: 3 / span 2; /* filas 3 y 4 */
-            width: 200px;
-            height: 705px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 140px;
-        }
-
-        nav input[type=submit] {
-            padding: 10px;
-            margin-bottom: 30px;
-            width: 170px;
-            height: 40px;
-            background-color: white;
-            border: 1px solid #000;
-            cursor: pointer;
-        }
-
-        nav input[type=submit]:hover {
-            background-color: #aaa;
-        }
-        .listview {
-            display: flex;
-            grid-area: main;
-            flex-direction: column;
-
-
-        }
-
-        #buscarSucursal {
-            margin-bottom: 30px;
-        }
-        #lbl_buscarSucursal {
-            margin-right: 100px;
-        }
-         #txt_buscarSucursal {
-             width: 300px;
-             margin-right: 30px;
-         }
          header {
              display: flex;
              gap: 50px;
              justify-content: center;
              gap: 80px;
-             grid-area: header;
+          
+             margin-left: 200px;
          }
          header a {
              display: inline-block;
@@ -105,9 +43,6 @@
             color: crimson;
         }
 
-         #form-header {
-
-         }
          h1 {
              background-color: crimson;
              color: white;
@@ -119,7 +54,65 @@
              border-start-start-radius: 10px;
              border-end-end-radius: 10px;
              margin-top: 2px;
+             width: 100%;
          }
+        #container {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        nav {
+            width: 200px;
+            height: 705px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 150px;
+            padding-top:100px;
+            padding-bottom:100px;
+            
+        }
+
+        nav input[type=submit] {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 170px;
+            height: 40px;
+            background-color: white;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+
+        nav input[type=submit]:hover {
+            background-color: #aaa;
+        }
+
+        .listview {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+                form-header {
+            width: 100%;
+        }
+        #buscarSucursal {
+            margin-bottom: 30px;
+        }
+        #lbl_buscarSucursal {
+            margin-right: 100px;
+        }
+         #txt_buscarSucursal {
+             width: 300px;
+             margin-right: 30px;
+         }
+
 
          .plantillaItem {
              display: flex;
@@ -132,15 +125,18 @@
 
          }
         footer {
-            grid-area: footer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 50px;
-            background-color: #eee;
-            text-align: center;
-            border: 4px dashed black;
+            width: 100%;
+            background: linear-gradient(to bottom, #FFFFFF, crimson, crimson, crimson);
+
+/*            background-color: crimson;*/
+            height: 100px;
+            bottom: 0px;
+            margin: 0px;
+            left: 0px;
+            right: 0px;
+            
         }
+
         #btn_buscarSucursal
         {
             cursor: pointer;
@@ -148,37 +144,52 @@
         #lv_Sucursales_DataPager1 > input[type=submit] {
             cursor: pointer;
         }
-        #espacio
-        {
-/*            grid-area: espacio;
-            background-color: crimson;
-            width: 200px;
-            height: 200px;*/
-        }
     </style>
 
 </head>
 <body>
-    <div id="espacio"></div>
+    
     <header>
         <a href="./SeleccionarSucursales.aspx">Listado de Sucursales</a>
         <a href="./ListadoSucursalesSeleccionados.aspx">Mostrar Sucursales Seleccionadas</a>
     </header>
 
+    <div id="container">
+
+    
 
     <form id="form1" runat="server">
-        <nav>
+        <nav> 
+            
+            
         </nav>
         <div class="listview">
             <div id="form-header">
                 <h1>Mostrar Sucursales Seleccionadas</h1>
             </div>
-            <asp:GridView ID="gv_ListadoSucursalesSeleccionadas" runat="server"></asp:GridView>
-            <asp:Label ID="lbl_SinDatos" runat="server"></asp:Label>
+            <div>
+                <asp:GridView ID="gv_ListadoSucursalesSeleccionadas" runat="server" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" GridLines="None" Width="100%">
+                    <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                    <HeaderStyle BackColor="crimson" Font-Bold="True" ForeColor="#E7E7FF" />
+                    <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+                    <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+                    <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#33276A" />
+                </asp:GridView>
+                <asp:Label ID="lbl_Mensajes" runat="server"></asp:Label>
+            </div>
+            <div style="margin-top: 40px; display: flex; justify-content: center; width: 100%; gap: 50px">
+                <asp:Button ID="btn_BorrarListadoSucursales" runat="server" Text="Eliminar listado" OnClick="btn_BorrarListadoSucursales_Click" style="display: inline-block; padding: 20px"/>
+                <asp:Button ID="btn_Volver" runat="server" Text="Volver" style="display: inline-block; padding: 20px" PostBackUrl="~/SeleccionarSucursales.aspx" />
+            </div>
+
         </div>
     </form>
+        </div>
     <footer>
-        <asp:Label ID="lblRespuesta" runat="server" Text="aca esta el label respuesta"></asp:Label>
 
     </footer>
 </body>

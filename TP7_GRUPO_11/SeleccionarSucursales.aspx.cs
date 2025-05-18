@@ -33,9 +33,9 @@ namespace TP7_GRUPO_11
                 if (Session["SeleccionSucursal"] == null )
                 {
                     dt = new DataTable();
-                    dt.Columns.Add("Id_Sucursal");
-                    dt.Columns.Add("NombreSucursal");
-                    dt.Columns.Add("DescripcionSucursal");
+                    dt.Columns.Add("ID_SUCURSAL");
+                    dt.Columns.Add("NOMBRE");
+                    dt.Columns.Add("DESCRIPCION");
                 }
 
                 else
@@ -45,14 +45,20 @@ namespace TP7_GRUPO_11
 
                 string[] argumentos = e.CommandArgument.ToString().Split(',');
 
-                DataRow dr = dt.NewRow();
-                dr["Id_Sucursal"] = argumentos[0];
-                dr["NombreSucursal"] = argumentos[1];
-                dr["DescripcionSucursal"] = argumentos[2];
-                dt.Rows.Add(dr); 
+                string idSucursal = argumentos[0];
 
+                bool existe = dt.AsEnumerable().Any(row => row["ID_SUCURSAL"].ToString() == idSucursal);
+
+                if (!existe)
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["ID_SUCURSAL"] = argumentos[0];
+                    dr["NOMBRE"] = argumentos[1];
+                    dr["DESCRIPCION"] = argumentos[2];
+                    dt.Rows.Add(dr);
+                }
+                
                 Session["SeleccionSucursal"] = dt;
-                lblRespuesta2.Text += argumentos[0] + " - " + argumentos[1] + " - " + argumentos[2] + "<br>";
 
             }
             
@@ -81,7 +87,6 @@ namespace TP7_GRUPO_11
         {
             if(e.CommandName == "eventoProvincia")
             {
-                lblRespuesta.Text = e.CommandArgument.ToString();
                 Session["SeleccionProvincia"] = e.CommandArgument.ToString();
                 SqlDataSource1.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [URL_Imagen_Sucursal], [DescripcionProvincia] FROM [Sucursal] INNER JOIN [Provincia] ON [Sucursal].[Id_ProvinciaSucursal] = [Provincia].[Id_Provincia] WHERE [Id_Provincia] = " + e.CommandArgument.ToString();
                 SqlDataSource1.SelectParameters.Clear();
