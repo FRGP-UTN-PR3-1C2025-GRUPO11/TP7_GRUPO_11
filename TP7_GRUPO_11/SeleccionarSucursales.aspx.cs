@@ -12,14 +12,15 @@ namespace TP7_GRUPO_11
 {
     public partial class SeleccionarSucursales : System.Web.UI.Page
     {
-         
+
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
- 
+
             if (!IsPostBack)
             {
-;
+                lv_Sucursales.DataBind();
+                inhabilitarBotones();
             }
         }
 
@@ -43,7 +44,7 @@ namespace TP7_GRUPO_11
                     dt = (DataTable)Session["SeleccionSucursal"];
                 }
 
-                string[] argumentos = e.CommandArgument.ToString().Split(',');
+                string[] argumentos = e.CommandArgument.ToString().Split('|');
 
                 string idSucursal = argumentos[0];
 
@@ -59,7 +60,7 @@ namespace TP7_GRUPO_11
                 }
                 
                 Session["SeleccionSucursal"] = dt;
-
+                inhabilitarBotones();
             }
             
         }
@@ -79,6 +80,8 @@ namespace TP7_GRUPO_11
             }
             lv_Sucursales.DataBind();
             txt_buscarSucursal.Text = String.Empty;
+            inhabilitarBotones();
+
         }
 
 
@@ -91,7 +94,37 @@ namespace TP7_GRUPO_11
                 SqlDataSource1.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [DescripcionSucursal], [URL_Imagen_Sucursal], [DescripcionProvincia] FROM [Sucursal] INNER JOIN [Provincia] ON [Sucursal].[Id_ProvinciaSucursal] = [Provincia].[Id_Provincia] WHERE [Id_Provincia] = " + e.CommandArgument.ToString();
                 SqlDataSource1.SelectParameters.Clear();
                 lv_Sucursales.DataBind();
+                inhabilitarBotones();
             }
+        }
+
+        protected void inhabilitarBotones()
+        {
+            foreach (ListViewDataItem item in lv_Sucursales.Items)
+            {
+                HiddenField hfIdSucursal = (HiddenField)item.FindControl("hfIdSucursal");
+
+                if(hfIdSucursal != null && Session["SeleccionSucursal"] != null)
+                {
+                    string idSucursal = hfIdSucursal.Value;
+                    DataTable dt = (DataTable)Session["SeleccionSucursal"];
+                    bool existe = dt.AsEnumerable().Any(row => row["ID_SUCURSAL"].ToString() == idSucursal);
+                    if (existe)
+                    {
+                        Button btnSeleccionar = (Button)item.FindControl("btn_Seleccionar");
+                        btnSeleccionar.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        protected void lv_Sucursales_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager pager = (DataPager)lv_Sucursales.FindControl("DataPager1");
+            pager.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            lv_Sucursales.DataBind();
+            inhabilitarBotones();
+
         }
     }
 }

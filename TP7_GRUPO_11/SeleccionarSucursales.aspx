@@ -176,7 +176,7 @@
                         <asp:Button ID="btn_buscarSucursal" runat="server" Text="Buscar" OnClick="btn_buscarSucursal_Click" />
                 </div>
             </div>
-            <asp:ListView ID="lv_Sucursales" runat="server" GroupItemCount="3" DataSourceID="SqlDataSource1">
+            <asp:ListView ID="lv_Sucursales" runat="server" GroupItemCount="3" DataSourceID="SqlDataSource1" OnPagePropertiesChanging="lv_Sucursales_PagePropertiesChanging">
                 <EditItemTemplate>
                     <td runat="server" style="background-color: #999999; width: 250px">NombreSucursal:
                         <asp:TextBox ID="NombreSucursalTextBox" runat="server" Text='<%# Bind("NombreSucursal") %>' />
@@ -219,6 +219,7 @@
                         <br /></td>
                 </InsertItemTemplate>
                 <ItemTemplate>
+                    <asp:HiddenField ID="hfIdSucursal" runat="server" Value='<%# Eval("Id_Sucursal") %>' />
                     <td runat="server" style="height: 335px;width: 250px">
                         <div class="plantillaItem">
                             <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>'   style="display: block; padding: 4px" />
@@ -227,7 +228,7 @@
                             </div>
                             <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' style="display: block; padding: 4px;"   />
                             <div style="display: block; margin-top: auto; padding: 4px">
-                                <asp:Button ID="btn_Seleccionar" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("Id_Sucursal") + "," +  Eval("NombreSucursal") + "," + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btn_Seleccionar_Command" style="cursor: pointer;" />
+                                <asp:Button ID="btn_Seleccionar" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("Id_Sucursal") + "|" +  Eval("NombreSucursal") + "|" + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btn_Seleccionar_Command" style="cursor: pointer;" />
                             </div>
                         </div>
                     </td>
@@ -270,7 +271,6 @@
     </form>
     </div>
     <footer>
-    
     </footer>
     
 </body>
