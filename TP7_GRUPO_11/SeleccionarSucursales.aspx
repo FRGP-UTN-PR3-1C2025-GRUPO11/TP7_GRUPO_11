@@ -6,13 +6,61 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>TP 7 - Grupo 11 | SeleccionarSucursales.aspx</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;
+            gap: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        td {
+            width: 200px;
+        }
+
+        Table {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #btnBuscarSucursal {
+            background: none;
+            cursor: pointer;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            padding: 10px;
+            transition: 0.4s ease;
+        }
+
+        #btnBuscarSucursal:hover {
+                background-color: #EDDD53;
+                color: #000000;
+            }
+
+        #txtBoxBuscarSucursal {
+            padding: .2rem;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Label ID="Label1" runat="server" Text="Busqueda por nombre de Sucursal:"></asp:Label>
-            <asp:TextBox ID="txtBoxBuscarSucursal" runat="server"></asp:TextBox>
+            <h1>Listado de Sucursales</h1>
+            <section>
+            <asp:Label ID="lblBusquedaSucursal" runat="server" Text="Busqueda por nombre de Sucursal:"></asp:Label>
+            <asp:TextBox ID="txtBoxBuscarSucursal" runat="server" placeholder="Ingrese Sucursal..."></asp:TextBox>
             <asp:Button ID="btnBuscarSucursal" runat="server" OnClick="btnBuscarSucursal_Click" Text="Buscar" />
+            </section>
             <asp:ListView ID="lv_Sucursales" runat="server" DataSourceID="SqlDataSource1" GroupItemCount="3">
                 <EditItemTemplate>
                     <td runat="server" style="background-color: #FFCC66;color: #000080;">URL_Imagen_Sucursal:
