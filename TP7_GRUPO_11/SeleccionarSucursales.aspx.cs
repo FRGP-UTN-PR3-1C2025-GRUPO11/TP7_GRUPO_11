@@ -101,5 +101,23 @@ namespace TP7_GRUPO_11
 
             lv_Sucursales.DataBind();
         }
+
+        protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Command(object sender, CommandEventArgs e)
+        {
+            if(e.CommandName == "EventoBoton")
+            {
+                int idProvincia = Convert.ToInt32(e.CommandArgument);
+                SqlDataSource1.SelectCommand = "SELECT [URL_Imagen_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_Sucursal] FROM [Sucursal] WHERE Id_ProvinciaSucursal = @id";
+
+                SqlDataSource1.SelectParameters.Clear();
+                SqlDataSource1.SelectParameters.Add("id", idProvincia.ToString());
+                lv_Sucursales.DataBind();
+            }
+        }
     }
 }

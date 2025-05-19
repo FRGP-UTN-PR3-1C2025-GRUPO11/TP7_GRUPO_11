@@ -152,9 +152,16 @@
                 </SelectedItemTemplate>
             </asp:ListView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [URL_Imagen_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_Sucursal] FROM [Sucursal]"></asp:SqlDataSource>
+        <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="DataList1_SelectedIndexChanged">
+            <ItemTemplate>
+                <asp:Button ID="Button1" runat="server" CommandName="EventoBoton" CommandArgument='<%# Eval("Id_Provincia") %>' Text='<%# Eval("DescripcionProvincia") %>' OnCommand="Button1_Command" />
+                <br />
+            </ItemTemplate>
+        </asp:DataList>
         </div>
         <asp:GridView ID="gvPrueba" runat="server">
         </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [DescripcionProvincia], [Id_Provincia] FROM [Provincia]"></asp:SqlDataSource>
     </form>
 </body>
 </html>
