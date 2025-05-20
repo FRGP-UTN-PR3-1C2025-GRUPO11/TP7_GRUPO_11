@@ -36,16 +36,8 @@ h1 {
     margin-top: 2px;
 }
 
-td {
-    width: 200px;
-}
 
-table 
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 #btnBuscarSucursal 
  {
@@ -88,7 +80,7 @@ header.content
 
 /*                        border: 1px dashed black;*/
 }
-.content a 
+header .content a 
 {
     color: red;
     display: inline-block;
@@ -301,7 +293,7 @@ header a:hover {
                         </tr>
                         <tr runat="server">
                             <td runat="server" style="text-align: center;background-color: #5D7B9D;font-family: Verdana, Arial, Helvetica, sans-serif;color: #FFFFFF">
-                                <asp:DataPager ID="DataPager1" runat="server" PageSize="3">
+                                <asp:DataPager ID="DataPager1" runat="server" PageSize="6">
                                     <Fields>
                                         <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                                         <asp:NumericPagerField />
