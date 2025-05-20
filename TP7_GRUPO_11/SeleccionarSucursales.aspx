@@ -115,18 +115,20 @@ header a:hover {
     height: 705px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
 /*                            border: 1px dashed black;*/
-    padding-bottom:100px;
+    padding-top: 200px;
+    padding-bottom:200px;
     flex-basis: 200px;
     flex-shrink: 0;
     flex-grow: 0;
+    
+    align-items: center;
 }
 
 #DataList1 input[type=submit] {
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     width: 170px;
     height: 40px;
     background-color: white;
@@ -138,7 +140,7 @@ header a:hover {
     background-color: #aaa;
 }
 
-#lv_Sucursales table {
+#lv_Sucursales {
     width: 100%;
     table-layout: fixed;
 }
@@ -237,7 +239,7 @@ header a:hover {
                     </EmptyDataTemplate>
 
                     <EmptyItemTemplate>
-                        <td runat="server" />
+                        <td runat="server" style="height: 335px; width: 250px" />
                     </EmptyItemTemplate>
                     <GroupTemplate>
                         <tr id="itemPlaceholderContainer" runat="server">
@@ -265,7 +267,7 @@ header a:hover {
 
 
                                         <ItemTemplate>
-                        <td runat="server" style="height: 335px; width: 350px ">
+                        <td runat="server" style="height: 335px; width: 250px ">
                             <div class="plantillaItem" >
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("NombreSucursal") %>' style="display: block; padding: 4px" />
                                 <div style="display: block; background-color: #ffffff">
@@ -292,7 +294,7 @@ header a:hover {
                             </td>
                         </tr>
                         <tr runat="server">
-                            <td runat="server" style="text-align: center;background-color: #5D7B9D;font-family: Verdana, Arial, Helvetica, sans-serif;color: #FFFFFF">
+                            <td runat="server" style="text-align: center;background-color: crimson;font-family: Verdana, Arial, Helvetica, sans-serif;color: #FFFFFF">
                                 <asp:DataPager ID="DataPager1" runat="server" PageSize="6">
                                     <Fields>
                                         <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
