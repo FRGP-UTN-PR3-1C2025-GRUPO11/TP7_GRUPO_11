@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TP7_GRUPO_11.Conexion;
 
 namespace TP7_GRUPO_11
 {
@@ -20,68 +21,20 @@ namespace TP7_GRUPO_11
             
         }
 
-
-        private DataTable CreateTabla()
-        {
-            DataTable dataTable = new DataTable();
-
-            DataColumn dataColumn = new DataColumn("Id_Sucursal", System.Type.GetType("System.String"));
-            dataTable.Columns.Add(dataColumn);
-
-            dataColumn = new DataColumn("Nombre", System.Type.GetType("System.String"));
-            dataTable.Columns.Add(dataColumn);
-
-            dataColumn = new DataColumn("Descripcion", System.Type.GetType("System.String"));
-            dataTable.Columns.Add(dataColumn);
-
-
-
-
-            return dataTable;
-           
-        }
-        private DataTable agregarFila(DataTable dataTable,string nombreSucursal, string DescripcionSucursal, string Id_Sucursal)
-        {
-            DataRow dataRow = dataTable.NewRow();
-            dataRow["Id_Sucursal"] = Id_Sucursal;
-            dataRow["Nombre"] = nombreSucursal;
-            dataRow["Descripcion"] = DescripcionSucursal;
-            dataTable.Rows.Add(dataRow);
-
-            return dataTable;
-        }
-
         protected void btnSeleccion_Command(object sender, CommandEventArgs e)
         {
+            if (e.CommandName == "eventoSeleccionar")
             {
-                if (e.CommandName == "eventoSeleccionar")
-                {
+                string[] datos = e.CommandArgument.ToString().Split(';');
+                string nombre = datos[0];
+                string descripcion = datos[1];
+                string idSucursal = datos[2];
 
-                    string[] datos = e.CommandArgument.ToString().Split(';');
+                SeleccionSucursal.AgregarSucursal(idSucursal, nombre, descripcion);
 
-                    string idSucursal = datos[0];
-                    string nombreSucursal = datos[1];
-                    string descripcionSucursal = datos[2];
-
-                   
-                    if (Session["Tabla"] == null)
-                    {
-                        Session["Tabla"] = CreateTabla();
-                    }
-
-                
-                    agregarFila((DataTable)Session["Tabla"], idSucursal, nombreSucursal, descripcionSucursal);
-                    inhabilitarBotones();
-
-                    
-                 
-
-                }
+                inhabilitarBotones();
             }
-
-
         }
-
         protected void btnBuscarSucursal_Click(object sender, EventArgs e)
         {
             string filtro = txtBoxBuscarSucursal.Text.Trim();
@@ -125,9 +78,7 @@ namespace TP7_GRUPO_11
                 if (hfIdSucursal != null && Session["Tabla"] != null)
                 {
                     string idSucursal = hfIdSucursal.Value;
-                    DataTable dt = (DataTable)Session["Tabla"];
-                    bool existe = dt.AsEnumerable().Any(row => row["Id_Sucursal"].ToString() == idSucursal);
-                    if (existe)
+                    if (SeleccionSucursal.EstaSeleccionada(idSucursal))
                     {
                         Button btnSeleccionar = (Button)item.FindControl("btnSeleccion");
                         btnSeleccionar.Enabled = false;
