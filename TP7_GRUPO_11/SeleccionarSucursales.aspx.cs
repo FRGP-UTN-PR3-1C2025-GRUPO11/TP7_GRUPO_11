@@ -100,6 +100,7 @@ namespace TP7_GRUPO_11
             }
 
             lv_Sucursales.DataBind();
+            txtBoxBuscarSucursal.Text = string.Empty;
         }
 
         protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)

@@ -83,6 +83,7 @@
     <Content Include="Imagenes\9.jpg" />
     <Content Include="SeleccionarSucursales.aspx" />
     <Content Include="Web.config" />
+    <Content Include="ListadoSucursalesSeleccionadas.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion\accesoDatos.cs" />
@@ -94,6 +95,13 @@
     </Compile>
     <Compile Include="SeleccionarSucursales.aspx.designer.cs">
       <DependentUpon>SeleccionarSucursales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoSucursalesSeleccionadas.aspx.cs">
+      <DependentUpon>ListadoSucursalesSeleccionadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoSucursalesSeleccionadas.aspx.designer.cs">
+      <DependentUpon>ListadoSucursalesSeleccionadas.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

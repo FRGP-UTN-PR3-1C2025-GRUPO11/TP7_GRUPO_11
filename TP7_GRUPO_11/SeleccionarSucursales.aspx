@@ -70,16 +70,13 @@ h1 {
 {
     margin: 0px auto;
     width: 960px;
-/*                        border: 1px dashed black;*/
+
 }
 
 header.content
 {
     background-color: crimson;
     height: 100px;
-
-
-/*                        border: 1px dashed black;*/
 }
 header .content a 
 {
@@ -117,7 +114,6 @@ header a:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-/*                            border: 1px dashed black;*/
     padding-top: 200px;
     padding-bottom:200px;
     flex-basis: 200px;
@@ -135,10 +131,12 @@ header a:hover {
     background-color: white;
     border: 1px solid #000;
     cursor: pointer;
+    transition: background-color 0.3s ease-in, color 0.3s ease;
 }
 
 #DataList1 input[type=submit]:hover {
-    background-color: #aaa;
+    background-color: rgba(220, 20, 60, 0.5);
+    color: #000000;
 }
 
 #lv_Sucursales {
@@ -169,7 +167,7 @@ header a:hover {
                 <div class="content">
                     <div class="links">
                         <a href="./SeleccionarSucursales.aspx">Listado de Sucursales</a>
-                        <a href="./ListadoSucursalesSeleccionados.aspx">Mostrar Sucursales Seleccionadas</a>
+                        <a href="./ListadoSucursalesSeleccionadas.aspx">Mostrar Sucursales Seleccionadas</a>
                     </div>
                     <h1>Listado de Sucursales</h1>
                 </div>
