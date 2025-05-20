@@ -63,6 +63,7 @@ h1 {
 {
     display: flex;
     justify-content: start;
+    align-items: start;
 }
 
 .content 
@@ -190,18 +191,6 @@ header a:hover {
                     </ItemTemplate>
                 </asp:DataList>
 
-
-
-
-
-
-
-
-
-
-
-
-
                 <asp:ListView ID="lv_Sucursales" runat="server" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="lv_Sucursales_SelectedIndexChanged" DataKeyNames="Id_Sucursal" GroupItemCount="3">
 
 
@@ -297,9 +286,9 @@ header a:hover {
                             <td runat="server" style="text-align: center;background-color: crimson;font-family: Verdana, Arial, Helvetica, sans-serif;color: #FFFFFF">
                                 <asp:DataPager ID="DataPager1" runat="server" PageSize="6">
                                     <Fields>
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" LastPageText="Ultimo" FirstPageText="Primero" NextPageText="Siguiente" PreviousPageText="Anterior" ShowLastPageButton="False" />
                                         <asp:NumericPagerField />
-                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                        <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" LastPageText="Ultimo" FirstPageText="Primero" />
                                     </Fields>
                                 </asp:DataPager>
                             </td>
