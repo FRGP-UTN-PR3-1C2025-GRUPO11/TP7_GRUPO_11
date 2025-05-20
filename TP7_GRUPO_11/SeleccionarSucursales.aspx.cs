@@ -119,5 +119,10 @@ namespace TP7_GRUPO_11
                 lv_Sucursales.DataBind();
             }
         }
+
+        protected void lv_Sucursales_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

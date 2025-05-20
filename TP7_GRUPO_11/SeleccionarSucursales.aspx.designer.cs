@@ -51,6 +51,15 @@ namespace TP7_GRUPO_11
         protected global::System.Web.UI.WebControls.Button btnBuscarSucursal;
 
         /// <summary>
+        /// Control DataList1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList DataList1;
+
+        /// <summary>
         /// Control lv_Sucursales.
         /// </summary>
         /// <remarks>
@@ -67,15 +76,6 @@ namespace TP7_GRUPO_11
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-
-        /// <summary>
-        /// Control DataList1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
 
         /// <summary>
         /// Control gvPrueba.
