@@ -182,14 +182,14 @@ header a:hover {
 
             <div id="centro" class="content">
         
-                <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="DataList1_SelectedIndexChanged">
+                <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2">
                     <ItemTemplate>
                         <asp:Button ID="Button1" runat="server" CommandName="EventoBoton" CommandArgument='<%# Eval("Id_Provincia") %>' Text='<%# Eval("DescripcionProvincia") %>' OnCommand="Button1_Command" />
                         
                     </ItemTemplate>
                 </asp:DataList>
 
-                <asp:ListView ID="lv_Sucursales" runat="server" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="lv_Sucursales_SelectedIndexChanged" DataKeyNames="Id_Sucursal" GroupItemCount="3">
+                <asp:ListView ID="lv_Sucursales" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="Id_Sucursal" GroupItemCount="3" OnPagePropertiesChanging="lv_Sucursales_PagePropertiesChanging" OnDataBound="lv_Sucursales_DataBound">
 
 
 
@@ -253,7 +253,8 @@ header a:hover {
 
 
 
-                                        <ItemTemplate>
+                    <ItemTemplate>
+                        <asp:HiddenField ID="hfIdSucursal" runat="server" Value='<%# Eval("Id_Sucursal") %>' />
                         <td runat="server" style="height: 335px; width: 250px ">
                             <div class="plantillaItem" >
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("NombreSucursal") %>' style="display: block; padding: 4px" />
@@ -262,12 +263,12 @@ header a:hover {
                                 </div>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("DescripcionSucursal") %>' style="display: block; padding: 4px;" />
                                 <div style="display: block; margin-top: auto; padding: 4px">
-                                    <asp:Button ID="btnSeleccion" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("nombreSucursal") + ";" + Eval("DescripcionSucursal") + ";" +  Eval("Id_Sucursal") %>' CommandName="eventoSeleccionar" OnClick="btnSeleccion_Click" OnCommand="btnSeleccion_Command" style="cursor: pointer;" />
+                                    <asp:Button ID="btnSeleccion" runat="server" Text="Seleccionar" CommandArgument='<%# Eval("nombreSucursal") + ";" + Eval("DescripcionSucursal") + ";" +  Eval("Id_Sucursal") %>' CommandName="eventoSeleccionar" OnCommand="btnSeleccion_Command" style="cursor: pointer;" />
                                 </div>
                             </div>
 
                         </td>
-</ItemTemplate>
+                    </ItemTemplate>
 
 
                     <LayoutTemplate>
@@ -320,12 +321,7 @@ header a:hover {
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [URL_Imagen_Sucursal], [NombreSucursal], [DescripcionSucursal], [Id_Sucursal] FROM [Sucursal]"></asp:SqlDataSource>
         </main>
-
-
-
-        
-        <asp:GridView ID="gvPrueba" runat="server">
-        </asp:GridView>
+     
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [DescripcionProvincia], [Id_Provincia] FROM [Provincia]"></asp:SqlDataSource>
     </form>
 </body>

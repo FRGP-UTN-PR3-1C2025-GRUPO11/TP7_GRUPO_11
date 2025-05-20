@@ -12,28 +12,26 @@ namespace TP7_GRUPO_11
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+                lv_Sucursales.DataBind();
+                
+            }
             
         }
-
-        protected void btnSeleccion_Click(object sender, EventArgs e)
-        {
-            
-           
-        }
-
 
 
         private DataTable CreateTabla()
         {
             DataTable dataTable = new DataTable();
 
-            DataColumn dataColumn = new DataColumn("NombreSucursal", System.Type.GetType("System.String"));
+            DataColumn dataColumn = new DataColumn("Id_Sucursal", System.Type.GetType("System.String"));
             dataTable.Columns.Add(dataColumn);
 
-            dataColumn = new DataColumn("DescripcionSucursal", System.Type.GetType("System.String"));
+            dataColumn = new DataColumn("Nombre", System.Type.GetType("System.String"));
             dataTable.Columns.Add(dataColumn);
 
-            dataColumn = new DataColumn("Id_Sucursal", System.Type.GetType("System.String"));
+            dataColumn = new DataColumn("Descripcion", System.Type.GetType("System.String"));
             dataTable.Columns.Add(dataColumn);
 
 
@@ -45,9 +43,9 @@ namespace TP7_GRUPO_11
         private DataTable agregarFila(DataTable dataTable,string nombreSucursal, string DescripcionSucursal, string Id_Sucursal)
         {
             DataRow dataRow = dataTable.NewRow();
-            dataRow["NombreSucursal"] = nombreSucursal;
-            dataRow["DescripcionSucursal"] = DescripcionSucursal;
             dataRow["Id_Sucursal"] = Id_Sucursal;
+            dataRow["Nombre"] = nombreSucursal;
+            dataRow["Descripcion"] = DescripcionSucursal;
             dataTable.Rows.Add(dataRow);
 
             return dataTable;
@@ -61,9 +59,9 @@ namespace TP7_GRUPO_11
 
                     string[] datos = e.CommandArgument.ToString().Split(';');
 
-                    string idSucursal = datos[2];
-                    string nombreSucursal = datos[0];
-                    string descripcionSucursal = datos[1];
+                    string idSucursal = datos[0];
+                    string nombreSucursal = datos[1];
+                    string descripcionSucursal = datos[2];
 
                    
                     if (Session["Tabla"] == null)
@@ -72,12 +70,12 @@ namespace TP7_GRUPO_11
                     }
 
                 
-                    agregarFila((DataTable)Session["Tabla"], nombreSucursal, descripcionSucursal, idSucursal);
+                    agregarFila((DataTable)Session["Tabla"], idSucursal, nombreSucursal, descripcionSucursal);
+                    inhabilitarBotones();
 
                     
                  
-                    gvPrueba.DataSource = (DataTable)Session["Tabla"];
-                    gvPrueba.DataBind();
+
                 }
             }
 
@@ -101,12 +99,9 @@ namespace TP7_GRUPO_11
 
             lv_Sucursales.DataBind();
             txtBoxBuscarSucursal.Text = string.Empty;
+            
         }
 
-        protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         protected void Button1_Command(object sender, CommandEventArgs e)
         {
@@ -118,12 +113,39 @@ namespace TP7_GRUPO_11
                 SqlDataSource1.SelectParameters.Clear();
                 SqlDataSource1.SelectParameters.Add("id", idProvincia.ToString());
                 lv_Sucursales.DataBind();
+                
+            }
+        }
+        protected void inhabilitarBotones()
+        {
+            foreach (ListViewDataItem item in lv_Sucursales.Items)
+            {
+                HiddenField hfIdSucursal = (HiddenField)item.FindControl("hfIdSucursal");
+
+                if (hfIdSucursal != null && Session["Tabla"] != null)
+                {
+                    string idSucursal = hfIdSucursal.Value;
+                    DataTable dt = (DataTable)Session["Tabla"];
+                    bool existe = dt.AsEnumerable().Any(row => row["Id_Sucursal"].ToString() == idSucursal);
+                    if (existe)
+                    {
+                        Button btnSeleccionar = (Button)item.FindControl("btnSeleccion");
+                        btnSeleccionar.Enabled = false;
+                    }
+                }
             }
         }
 
-        protected void lv_Sucursales_SelectedIndexChanged(object sender, EventArgs e)
+        protected void lv_Sucursales_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
+            DataPager pager = (DataPager)lv_Sucursales.FindControl("DataPager1");
+            pager.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
 
+        }
+
+        protected void lv_Sucursales_DataBound(object sender, EventArgs e)
+        {
+            inhabilitarBotones();
         }
     }
 }
