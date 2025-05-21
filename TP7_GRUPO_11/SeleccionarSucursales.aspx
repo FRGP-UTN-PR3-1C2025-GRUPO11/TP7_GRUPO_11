@@ -19,8 +19,8 @@ section {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-bottom: 10px;
     gap: 12px;
+    height: 50px;
 }
 
 h1 {

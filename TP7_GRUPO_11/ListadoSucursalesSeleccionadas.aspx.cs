@@ -12,18 +12,33 @@ namespace TP7_GRUPO_11
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            llbContadorSeleccionados.Visible = false;
+            if (!IsPostBack)
             {
                 if(Session["Tabla"] == null)
                 {
+                    btn_BorrarListadoSucursales.Visible = false;
                     lbl_SinDatos.Text = "No hay sucursales seleccionadas";
+                    
                 }
                 else
                 {
+                    llbContadorSeleccionados.Visible = true;
+                    btn_BorrarListadoSucursales.Visible = true;
                     gv_SucursalesSeleccionadas.DataSource = (DataTable)Session["Tabla"];
                     gv_SucursalesSeleccionadas.DataBind();
+                    if (Convert.ToInt32(Session["contador"]) > 0)
+                        llbContadorSeleccionados.Text = "Sucursales seleccionadas: " + Session["contador"];
                 }
             }
+        }
+        protected void btn_BorrarListadoSucursales_Click(object sender, EventArgs e)
+        {
+            btn_BorrarListadoSucursales.Visible = false;
+            gv_SucursalesSeleccionadas.Visible = false;
+            Session["Tabla"] = null;
+            lbl_Mensajes.Text = "Selección eliminada";
+            Session["contador"] = null;
         }
     }
 }

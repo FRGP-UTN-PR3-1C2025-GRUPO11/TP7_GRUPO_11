@@ -18,7 +18,8 @@ namespace TP7_GRUPO_11
             {
                 lv_Sucursales.DataBind();
 
-                Session["contador"] = 0;
+                if (Convert.ToInt32(Session["contador"]) > 0)
+                    llbContadorSeleccionados.Text = "Sucursales seleccionadas: " + Session["contador"];
             }
             
         }
@@ -38,8 +39,8 @@ namespace TP7_GRUPO_11
                 inhabilitarBotones();
 
                 int contador = Convert.ToInt32(Session["contador"]);
-                contador++;
-                Session["contador"] = contador;
+                
+                Session["contador"] = ++contador;
 
                 llbContadorSeleccionados.Text = "Sucursales seleccionadas: " + contador;
             }

@@ -70,9 +70,13 @@ header a:hover {
     gap: 100px;
 }
 
-#sucursales_seleccionadas
+#llbContadorSeleccionados
 {
-    text-align:
+    display:flex;
+    justify-content: flex-end;
+    padding-right: 13px;
+    align-items: center;
+    height: 50px;
 }
 
 
@@ -90,6 +94,7 @@ header a:hover {
             <h1>Mostrar Sucursales Seleccionadas</h1>
         </div>
     </header>
+        <asp:Label ID="llbContadorSeleccionados" runat="server" CssClass="content"></asp:Label>
         <div id="sucursales_seleccionadas" class="content">
             <asp:GridView ID="gv_SucursalesSeleccionadas" runat="server" style="width: 100%" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" GridLines="None">
                 <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
@@ -103,6 +108,11 @@ header a:hover {
                 <SortedDescendingHeaderStyle BackColor="#33276A" />
             </asp:GridView>
             <asp:Label ID="lbl_SinDatos" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lbl_Mensajes" runat="server" Text=""></asp:Label>
+            <div style="margin-top: 40px; display: flex; justify-content: center; width: 100%; gap: 50px">
+                <asp:Button ID="btn_BorrarListadoSucursales" runat="server" Text="Eliminar listado" OnClick="btn_BorrarListadoSucursales_Click" style="display: inline-block; padding: 20px"/>
+                <asp:Button ID="btn_Volver" runat="server" Text="Volver" style="display: inline-block; padding: 20px" PostBackUrl="~/SeleccionarSucursales.aspx" />
+            </div>
         </div>
     </form>
 </body>
