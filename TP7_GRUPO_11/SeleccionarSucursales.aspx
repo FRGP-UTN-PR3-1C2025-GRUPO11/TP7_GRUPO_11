@@ -17,10 +17,10 @@
 
 section {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding-bottom: 10px;
-    gap: 10px;
+    gap: 12px;
 }
 
 h1 {
@@ -155,6 +155,11 @@ header a:hover {
     width: 250px;
 }
 
+#lblBusquedaSucursal
+{
+    margin-left: 202px;
+}
+
 </style>
 
 
@@ -175,12 +180,16 @@ header a:hover {
         <main>
 
             <section class="content">
-                <asp:Label ID="lblBusquedaSucursal" runat="server" Text="Busqueda por nombre de Sucursal:"></asp:Label>
+                <asp:Label ID="lblBusquedaSucursal" runat="server" Text="Búsqueda por nombre de Sucursal:"></asp:Label>
                 <asp:TextBox ID="txtBoxBuscarSucursal" runat="server" placeholder="Ingrese Sucursal..."></asp:TextBox>
-                <asp:Button ID="btnBuscarSucursal" runat="server" OnClick="btnBuscarSucursal_Click" Text="Buscar" />
-            &nbsp;&nbsp;&nbsp;
-                <asp:RegularExpressionValidator ID="revBuscarSucursal" runat="server" ControlToValidate="txtBoxBuscarSucursal" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$">Debe ingresar letras y no números</asp:RegularExpressionValidator>
-&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="btnBuscarSucursal" runat="server" OnClick="btnBuscarSucursal_Click" Text="Buscar" OnClientClick="if (!Page_ClientValidate()) return false;" />
+                <asp:RegularExpressionValidator 
+                    ID="revBuscarSucursal" 
+                    runat="server" 
+                    ControlToValidate="txtBoxBuscarSucursal" 
+                    ForeColor="Red" 
+                    ValidationExpression="^[a-zA-Z\s]+$" 
+                    ErrorMessage="Debe ingresar letras y no números"></asp:RegularExpressionValidator>
                 <asp:Label ID="llbContadorSeleccionados" runat="server"></asp:Label>
             </section>
 

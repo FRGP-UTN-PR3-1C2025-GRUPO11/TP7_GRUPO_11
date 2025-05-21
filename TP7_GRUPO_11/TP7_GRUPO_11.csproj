@@ -86,9 +86,7 @@
     <Content Include="ListadoSucursalesSeleccionadas.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexion\accesoDatos.cs" />
-    <Compile Include="Conexion\gestionBDSucursales.cs" />
-    <Compile Include="Conexion\SeleccionSucursal.cs" />
+    <Compile Include="SeleccionSucursal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeleccionarSucursales.aspx.cs">
       <DependentUpon>SeleccionarSucursales.aspx</DependentUpon>
