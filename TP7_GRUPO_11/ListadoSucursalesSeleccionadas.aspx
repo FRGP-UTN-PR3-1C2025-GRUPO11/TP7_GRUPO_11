@@ -93,7 +93,7 @@ header a:hover {
         <div id="sucursales_seleccionadas" class="content">
             <asp:GridView ID="gv_SucursalesSeleccionadas" runat="server" style="width: 100%" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" GridLines="None">
                 <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+                <HeaderStyle BackColor="crimson" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                 <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
                 <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />

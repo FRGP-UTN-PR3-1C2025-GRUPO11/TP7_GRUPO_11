@@ -155,10 +155,6 @@ header a:hover {
     width: 250px;
 }
 
-#lblBusquedaSucursal
-{
-    margin-left: 202px;
-}
 
 </style>
 
