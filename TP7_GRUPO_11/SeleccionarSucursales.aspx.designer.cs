@@ -51,6 +51,24 @@ namespace TP7_GRUPO_11
         protected global::System.Web.UI.WebControls.Button btnBuscarSucursal;
 
         /// <summary>
+        /// Control revBuscarSucursal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revBuscarSucursal;
+
+        /// <summary>
+        /// Control llbContadorSeleccionados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label llbContadorSeleccionados;
+
+        /// <summary>
         /// Control DataList1.
         /// </summary>
         /// <remarks>

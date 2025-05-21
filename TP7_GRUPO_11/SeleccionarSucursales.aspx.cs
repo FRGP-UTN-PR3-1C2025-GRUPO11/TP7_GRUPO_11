@@ -11,20 +11,23 @@ namespace TP7_GRUPO_11
 {
     public partial class SeleccionarSucursales : System.Web.UI.Page
     {
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
                 lv_Sucursales.DataBind();
-                
+
+                Session["contador"] = 0;
             }
             
         }
-
+        
         protected void btnSeleccion_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "eventoSeleccionar")
             {
+                
                 string[] datos = e.CommandArgument.ToString().Split(';');
                 string nombre = datos[0];
                 string descripcion = datos[1];
@@ -33,6 +36,12 @@ namespace TP7_GRUPO_11
                 SeleccionSucursal.AgregarSucursal(idSucursal, nombre, descripcion);
 
                 inhabilitarBotones();
+
+                int contador = Convert.ToInt32(Session["contador"]);
+                contador++;
+                Session["contador"] = contador;
+
+                llbContadorSeleccionados.Text = "Sucursales seleccionadas: " + contador;
             }
         }
         protected void btnBuscarSucursal_Click(object sender, EventArgs e)
@@ -54,7 +63,7 @@ namespace TP7_GRUPO_11
             txtBoxBuscarSucursal.Text = string.Empty;
             
         }
-
+        
 
         protected void Button1_Command(object sender, CommandEventArgs e)
         {
@@ -98,5 +107,8 @@ namespace TP7_GRUPO_11
         {
             inhabilitarBotones();
         }
+
+        
     }
+  
 }

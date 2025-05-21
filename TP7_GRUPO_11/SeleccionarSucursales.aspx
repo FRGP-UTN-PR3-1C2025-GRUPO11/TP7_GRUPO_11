@@ -178,6 +178,10 @@ header a:hover {
                 <asp:Label ID="lblBusquedaSucursal" runat="server" Text="Busqueda por nombre de Sucursal:"></asp:Label>
                 <asp:TextBox ID="txtBoxBuscarSucursal" runat="server" placeholder="Ingrese Sucursal..."></asp:TextBox>
                 <asp:Button ID="btnBuscarSucursal" runat="server" OnClick="btnBuscarSucursal_Click" Text="Buscar" />
+            &nbsp;&nbsp;&nbsp;
+                <asp:RegularExpressionValidator ID="revBuscarSucursal" runat="server" ControlToValidate="txtBoxBuscarSucursal" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$">Debe ingresar letras y no números</asp:RegularExpressionValidator>
+&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="llbContadorSeleccionados" runat="server"></asp:Label>
             </section>
 
             <div id="centro" class="content">
