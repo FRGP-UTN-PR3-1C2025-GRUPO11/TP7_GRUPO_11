@@ -56,7 +56,7 @@ h1 {
 
 #txtBoxBuscarSucursal 
 {
-    padding: .2rem;
+    padding: .2rem; 
 }
 
 #centro 
@@ -186,7 +186,7 @@ header a:hover {
                     ForeColor="Red" 
                     ValidationExpression="^[a-zA-Z\s]+$" 
                     ErrorMessage="Debe ingresar letras y no números"></asp:RegularExpressionValidator>
-                <asp:Label ID="llbContadorSeleccionados" runat="server"></asp:Label>
+                 <a href="./ListadoSucursalesSeleccionadas.aspx"><asp:Label ID="llbContadorSeleccionados" runat="server"></asp:Label></a>
             </section>
 
             <div id="centro" class="content">
